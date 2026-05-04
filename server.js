@@ -9,13 +9,7 @@ app.use(express.json());
 // ==========================
 let serviceAccount;
 
-if (process.env.FIREBASE_KEY) {
-  console.log("Using ENV Firebase Key");
-  serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
-} else {
-  console.log("Using LOCAL Firebase Key");
-  serviceAccount = require("./serviceAccount.json");
-}
+const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
